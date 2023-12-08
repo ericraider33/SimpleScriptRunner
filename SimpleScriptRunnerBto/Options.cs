@@ -56,7 +56,9 @@ public class Options
             SqlFile = switches.hasAny("-sqlfile", "--sqlfile", "-sf");
             SslMode = switches.value("--sslmode", "-sm");
 
-            double? timeoutValue = switches.valueDouble("-trantimeout", "--trantimeout", "-to");            // specified in minutes, fractional is fine      if (timeoutValue.HasValue)
+            double? timeoutValue = switches.valueDouble("-trantimeout", "--trantimeout", "-to");            // specified in minutes, fractional is fine
+            
+            if (timeoutValue.HasValue)
             {
                 // Validates that timeout against maximum value
                 TimeSpan timeout = TimeSpan.FromMinutes(timeoutValue.Value);            
