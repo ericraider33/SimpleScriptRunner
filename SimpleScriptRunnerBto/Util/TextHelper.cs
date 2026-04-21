@@ -6,25 +6,25 @@ namespace SimpleScriptRunnerBto.Util;
 
 public static class TextHelper
 {
-    public static Tuple<String, String> splitAt(this String input, String token)
+    public static Tuple<String, String> splitAt(this String input, String token, StringComparison comparison = StringComparison.Ordinal)
     {
-            if (string.IsNullOrEmpty(input))
-                return null;
+        if (string.IsNullOrEmpty(input))
+            return null;
 
-            int index = input.IndexOf(token, StringComparison.Ordinal);
-            if (index < 0)
-                return new Tuple<string, string>(input, "");
+        int index = input.IndexOf(token, comparison);
+        if (index < 0)
+            return new Tuple<string, string>(input, "");
 
-            return new Tuple<string, string>(input.Substring(0, index), input.Substring(index + token.Length));
-        }
+        return new Tuple<string, string>(input.Substring(0, index), input.Substring(index + token.Length));
+    }
 
     public static bool startsWithIgnoreCase(this String value, String toFind)
     {
-            if (value == null || toFind == null)
-                return false;
+        if (value == null || toFind == null)
+            return false;
 
-            return value.IndexOf(toFind, StringComparison.CurrentCultureIgnoreCase) == 0;
-        }
+        return value.IndexOf(toFind, StringComparison.CurrentCultureIgnoreCase) == 0;
+    }
 
     public static bool startsWithAny(String text, IEnumerable<String> toFind, bool ignoreCase = true)
     {

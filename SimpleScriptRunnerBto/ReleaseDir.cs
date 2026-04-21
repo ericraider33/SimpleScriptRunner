@@ -13,7 +13,7 @@ public class ReleaseDir
     public static ReleaseDir fromPath(string path)
     {
             string fileName = System.IO.Path.GetFileName(path);
-            Tuple<string, string> parts = fileName.splitAt(RELEASE);
+            Tuple<string, string> parts = fileName.splitAt(RELEASE, StringComparison.OrdinalIgnoreCase);
             if (parts == null || parts.Item2 == "")
                 return null;
 
